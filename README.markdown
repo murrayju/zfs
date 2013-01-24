@@ -2,8 +2,8 @@ This fork exists as a workaround to a specific problem I was having. I had a dri
 fail with 512 byte sector size, and the replacement that I purchased had 4K sectors.
 This would lead to an error in the zpool replace command:
 
-sudo zpool replace tank oldDisk newDisk -f
-  cannot replace oldDisk with newDisk: devices have different sector alignment
+    sudo zpool replace tank oldDisk newDisk -f
+    cannot replace oldDisk with newDisk: devices have different sector alignment
 
 I patched the code to use the logical sector size instead of the physical sector size,
 which then allowed the replacement to succeed.
