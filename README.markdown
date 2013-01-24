@@ -1,3 +1,15 @@
+This fork exists as a workaround to a specific problem I was having. I had a drive 
+fail with 512 byte sector size, and the replacement that I purchased had 4K sectors.
+This would lead to an error in the zpool replace command:
+
+sudo zpool replace tank ata-WDC_WD20EARS-00MVWB0_WD-WMAZA1211345 /dev/disk/by-id/ata-ST2000DM001-9YN164_Z1F22PQX -f
+  cannot replace ata-WDC_WD20EARS-00MVWB0_WD-WMAZA1211345 with /dev/disk/by-id/ata-ST2000DM001-9YN164_Z1F22PQX: devices have different sector alignment
+
+I patched the code to use the logical sector size instead of the physical sector size,
+which then allowed the replacement to succeed.
+
+----
+
 Native ZFS for Linux! ZFS is an advanced file system and volume manager
 which was originally developed for Solaris. It has been successfully 
 ported to FreeBSD and now there is a functional Linux ZFS kernel port
